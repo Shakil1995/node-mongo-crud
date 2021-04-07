@@ -55,7 +55,8 @@ app.get('/product/:id',(req, res) =>{
      $set: {price:req.body.price , quantity:req.body.quantity}
    })
    .then (result =>{
-     console.log('result hiyce ', result);
+    //  console.log('result hiyce ', result);
+    res.send(result.modifiedCount > 0);
    })
  })
 
@@ -65,8 +66,9 @@ app.get('/product/:id',(req, res) =>{
 app.delete('/delete/:id',(req, res) =>{
   // console.log(req.params.id);
   productCollection.deleteOne({_id: ObjectId(req.params.id)})
-  .then ( ( result)=>{
-    console.log(result);
+  .then (  result=>{
+    // console.log(result);
+    res.send(result.deletedCount > 0);
   } )
 })
 
